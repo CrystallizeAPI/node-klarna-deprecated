@@ -1,0 +1,37 @@
+{
+  "name": "node-klarna",
+  "version": "1.0.0",
+  "description": "Node Klarna SDK for easy Klarna integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ./v2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowballdigital/node-klarna.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/snowballdigital/node-klarna/issues"
+  },
+  "homepage": "https://github.com/snowballdigital/node-klarna#readme",
+  "dependencies": {
+    "cross-fetch": "^2.2.2",
+    "deep-assign": "^2.0.0",
+    "dotenv": "^6.0.0",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jest": "^23.6.0",
+    "prettier-standard": "^8.0.1"
+  }
+}
