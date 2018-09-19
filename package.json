@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint ./v2"
+    "lint": "eslint ./v2",
+    "validate": "yarn lint && yarn test",
+    "prepare": "yarn validate",
+    "prepush": "yarn validate"
   },
   "repository": {
     "type": "git",
@@ -31,6 +34,7 @@
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
+    "husky": "^0.14.3",
     "jest": "^23.6.0",
     "prettier-standard": "^8.0.1"
   }
