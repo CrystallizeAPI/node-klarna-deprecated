@@ -1,6 +1,6 @@
 {
   "name": "node-klarna",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Node Klarna SDK for easy Klarna integration",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "lint": "eslint ./v2",
     "validate": "yarn lint && yarn test",
     "prepare": "yarn validate",
-    "prepush": "yarn validate"
+    "prepush": "yarn lint"
   },
   "repository": {
     "type": "git",
