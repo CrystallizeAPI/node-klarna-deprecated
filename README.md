@@ -29,4 +29,7 @@ const { success } = Klarna.confirmOrder(order.id);
 // Capture order
 const { success } = Klarna.captureOrder(order.id);
 
+// Transform a Crystallize basket model (from @crystallize/react-basket) to a Klarna model
+const klarnaCart = Klarna.crystallizeBasketToKlarnaCart(crystallizeBasket.state);
+
 ```
