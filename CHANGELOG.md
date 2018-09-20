@@ -1,3 +1,11 @@
+## 1.1.0 (2018-09-20)
+
+* Added crystallizeBasketToKlarnaCart example ([9c1bc78](https://github.com/snowballdigital/node-klarna/commit/9c1bc78))
+* Addev dev:v2 env ([3ee67e0](https://github.com/snowballdigital/node-klarna/commit/3ee67e0))
+* Correct package name ([571ef15](https://github.com/snowballdigital/node-klarna/commit/571ef15))
+
+
+
 ## 1.0.0 (2018-09-19)
 
 * First release ([9e940d0](https://github.com/snowballdigital/node-klarna/commit/9e940d0))
