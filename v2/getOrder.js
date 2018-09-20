@@ -8,6 +8,10 @@ async function getOrder (orderId) {
 
     const order = await response.json()
 
+    if (response.status === 401) {
+      return { success: false, error: order }
+    }
+
     // Try to JSON.parse the basketMetadata if it exists
     order.merchant_order_data = JSON.parse(order.merchant_order_data || null)
 

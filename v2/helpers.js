@@ -83,14 +83,25 @@ async function doFetch (path, optionsOverride) {
     options.headers['Content-Type'] = KLARNA_CONTENT_TYPE
   }
 
+  const useTestCredentials =
+    (path === '' || path === '/') && KLARNA_MODE === 'test'
+
   if (options.body) {
     if (typeof options.body !== 'string') {
-      options.body = JSON.stringify(options.body)
+      let { body } = options
+
+      if (body && useTestCredentials) {
+        if (body.merchant) {
+          body.merchant.id = 200
+        }
+      }
+
+      options.body = JSON.stringify(body)
     }
   }
 
   if (!options.headers.Authorization) {
-    let hashBase = config.sharedSecret
+    let hashBase = useTestCredentials ? 'test' : config.sharedSecret
     if (options.body) {
       hashBase = options.body + hashBase
     }

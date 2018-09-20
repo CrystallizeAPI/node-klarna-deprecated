@@ -1,6 +1,6 @@
 const { cart, merchant } = require('./mockData')
 
-const v2 = require('../v2')
+const v2 = require('../../v2')
 
 test('an order is created', async () => {
   const createOrderResult = await v2.createOrder({ cart, merchant })
