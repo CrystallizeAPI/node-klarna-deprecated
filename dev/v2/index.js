@@ -38,6 +38,7 @@ router.get('/confirmation', async (req, res) => {
     <html>
       <body>
         <h1>Confirm status: ${error ? JSON.stringify(error) : success}</h1>
+        <div><a href="/capture?id=${id}">Click to capture</a></div>
         ${!order ? 'NOT SUCCESS' : order.gui.snippet}
       </body>
     </html>
@@ -53,7 +54,6 @@ router.get('/confirm', async (req, res) => {
     <html>
       <body>
       <h1>Confirm status: ${error ? JSON.stringify(error) : success}</h1>
-        Capture status: ${success.toString()}
       </body>
     </html>
   `
@@ -62,12 +62,12 @@ router.get('/confirm', async (req, res) => {
 
 router.get('/capture', async (req, res) => {
   const { id } = req.query
-  const { success, error } = await v2.captureOrder(id)
+  const { success, error, OCRCode } = await v2.captureOrder(id)
   res.send(
     `
     <html>
       <body>
-      <h1>Capture status: ${error ? JSON.stringify(error) : success}</h1>
+      <h1>Capture status: ${error ? JSON.stringify(error) : `${success}. OCR code: ${OCRCode}`}</h1>
       </body>
     </html>
   `
