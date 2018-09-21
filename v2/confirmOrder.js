@@ -1,28 +1,7 @@
-const { doFetch } = require('./helpers')
+const updateOrder = require('./updateOrder')
 
 async function confirmOrder (orderId) {
-  try {
-    const response = await doFetch(`/${orderId}`, {
-      body: { status: 'created' }
-    })
-
-    if (response.ok) {
-      return {
-        success: true
-      }
-    }
-
-    const error = await response.json()
-    return {
-      success: false,
-      error
-    }
-  } catch (error) {
-    return {
-      success: false,
-      error
-    }
-  }
+  return updateOrder(orderId, { status: 'created' })
 }
 
 module.exports = confirmOrder
