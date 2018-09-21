@@ -88,11 +88,11 @@ function captureOrder (orderId) {
       }
 
       try {
-        const value =
+        const OCRCode =
           result.methodResponse.params[0].param[0].value[0].array[0].data[0]
             .value[1].string[0]
-        if (value) {
-          resolve({ success: true, value })
+        if (OCRCode) {
+          resolve({ success: true, OCRCode })
         } else {
           resolve({
             success: false,
