@@ -1,3 +1,9 @@
+## 1.3.0 (2018-09-27)
+
+* Don't add attributes to name in crystallizeBasketToKlarnaCart ([2922b39](https://github.com/snowballdigital/node-klarna/commit/2922b39))
+
+
+
 ## 1.2.0 (2018-09-27)
 
 * Added updateOrder ([fa6d588](https://github.com/snowballdigital/node-klarna/commit/fa6d588))
