@@ -1,4 +1,4 @@
-const { cart, merchant, crystallizeBasket } = require('./mockData')
+const { cart, merchant } = require('./mockData')
 
 const v2 = require('../../v2')
 
