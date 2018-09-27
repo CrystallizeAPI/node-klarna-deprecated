@@ -1,3 +1,11 @@
+## 1.2.0 (2018-09-27)
+
+* Added updateOrder ([fa6d588](https://github.com/snowballdigital/node-klarna/commit/fa6d588))
+* Named the return value from v2 captureOrder ([0640920](https://github.com/snowballdigital/node-klarna/commit/0640920))
+* Updated dev env ([1e4796b](https://github.com/snowballdigital/node-klarna/commit/1e4796b))
+
+
+
 ## 1.1.0 (2018-09-20)
 
 * Added crystallizeBasketToKlarnaCart example ([9c1bc78](https://github.com/snowballdigital/node-klarna/commit/9c1bc78))
