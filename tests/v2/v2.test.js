@@ -24,8 +24,8 @@ test('crystallize basket is normalized correctly', () => {
     items: [
       {
         unit_price: 99.99,
-        tax_rate: 0,
-        discount_rate: 0
+        tax_rate: 15,
+        discount_rate: 20
       }
     ]
   })
@@ -33,8 +33,8 @@ test('crystallize basket is normalized correctly', () => {
     items: [
       {
         unit_price: 9999,
-        discount_rate: 0,
-        tax_rate: 0
+        tax_rate: 1500,
+        discount_rate: 2000
       }
     ]
   })
