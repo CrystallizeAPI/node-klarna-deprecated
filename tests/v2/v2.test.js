@@ -18,3 +18,24 @@ test('an order is created and confirmed', async () => {
   const confirmResult = await v2.confirmOrder(createOrderResult.order.id)
   expect(confirmResult.success).toBe(true)
 })
+
+test('crystallize basket is normalized correctly', () => {
+  const normalized = v2.crystallizeBasketToKlarnaCart({
+    items: [
+      {
+        unit_price: 99.99,
+        tax_rate: 0,
+        discount_rate: 0
+      }
+    ]
+  })
+  expect(normalized).toMatchObject({
+    items: [
+      {
+        unit_price: 9999,
+        discount_rate: 0,
+        tax_rate: 0
+      }
+    ]
+  })
+})

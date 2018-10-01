@@ -1,3 +1,16 @@
+## <small>1.3.1 (2018-09-28)</small>
+
+* Check that order exists@capture ([b2e6870](https://github.com/snowballdigital/node-klarna/commit/b2e6870))
+* Fixed lint ([539fa91](https://github.com/snowballdigital/node-klarna/commit/539fa91))
+
+
+
+## 1.3.0 (2018-09-27)
+
+* Don't add attributes to name in crystallizeBasketToKlarnaCart ([2922b39](https://github.com/snowballdigital/node-klarna/commit/2922b39))
+
+
+
 ## 1.2.0 (2018-09-27)
 
 * Added updateOrder ([fa6d588](https://github.com/snowballdigital/node-klarna/commit/fa6d588))

@@ -9,7 +9,14 @@ const config = getConfig()
 
 function captureOrder (orderId) {
   return new Promise(async resolve => {
-    const { order } = await getOrder(orderId)
+    const { success, order } = await getOrder(orderId)
+
+    if (!success) {
+      return resolve({
+        success: false,
+        error: 'Could not get Klarna order'
+      })
+    }
 
     const digest = crypto
       .createHash('sha512')
