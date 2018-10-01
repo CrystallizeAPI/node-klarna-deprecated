@@ -10,6 +10,16 @@ const cart = {
       unit_price: 12300,
       discount_rate: 1000,
       tax_rate: 2500
+    },
+    {
+      discount_rate: 0,
+      name: 'frakt-mypack',
+      quantity: 1,
+      reference: 'MY-10-354-standard',
+      sku: 'MY-10-354',
+      tax_rate: 0,
+      type: 'shipping_fee',
+      unit_price: 5900
     }
   ]
 }

@@ -21,6 +21,11 @@ test('an order is created and confirmed', async () => {
 
 test('crystallize basket is normalized correctly', () => {
   const normalized = v2.crystallizeBasketToKlarnaCart({
+    shipping: {
+      name: 'Super fast shipping',
+      price: 69,
+      tax_rate: 25
+    },
     items: [
       {
         unit_price: 99.99,
@@ -35,6 +40,14 @@ test('crystallize basket is normalized correctly', () => {
         unit_price: 9999,
         tax_rate: 1500,
         discount_rate: 2000
+      },
+      {
+        type: 'shipping_fee',
+        reference: 'SHIPPING',
+        name: 'Super fast shipping',
+        quantity: 1,
+        unit_price: 6900,
+        tax_rate: 2500
       }
     ]
   })
