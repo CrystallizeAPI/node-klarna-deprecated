@@ -1,3 +1,9 @@
+## <small>1.3.2 (2018-10-01)</small>
+
+* Fixed tax_rate and discount_rate for Klarna ([695be9e](https://github.com/snowballdigital/node-klarna/commit/695be9e))
+
+
+
 ## <small>1.3.1 (2018-09-28)</small>
 
 * Check that order exists@capture ([b2e6870](https://github.com/snowballdigital/node-klarna/commit/b2e6870))
