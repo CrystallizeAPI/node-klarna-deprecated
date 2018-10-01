@@ -1,3 +1,10 @@
+## <small>1.3.3 (2018-10-01)</small>
+
+* Fixed shipping ([df2504d](https://github.com/snowballdigital/node-klarna/commit/df2504d))
+* Updated tests ([63292a8](https://github.com/snowballdigital/node-klarna/commit/63292a8))
+
+
+
 ## <small>1.3.2 (2018-10-01)</small>
 
 * Fixed tax_rate and discount_rate for Klarna ([695be9e](https://github.com/snowballdigital/node-klarna/commit/695be9e))
