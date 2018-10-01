@@ -10,8 +10,10 @@ function crystallizeBasketToKlarnaCart (crystallizeBasket) {
         item.discount_rate = item.discount_rate || 0
         delete item.vat
 
-        // Klarna deals with prices without comma separator
+        // Klarna deals with units without comma separator
         item.unit_price *= 100
+        item.tax_rate *= 100
+        item.discount_rate *= 100
 
         // Add the attributes to the name
         if (item.attributes && item.attributes.length > 0) {
