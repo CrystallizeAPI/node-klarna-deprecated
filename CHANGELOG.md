@@ -1,3 +1,9 @@
+## <small>1.3.4 (2018-10-02)</small>
+
+* Respect freeShipping in toKlarnaCart ([dffeb09](https://github.com/snowballdigital/node-klarna/commit/dffeb09))
+
+
+
 ## <small>1.3.3 (2018-10-01)</small>
 
 * Fixed shipping ([df2504d](https://github.com/snowballdigital/node-klarna/commit/df2504d))
