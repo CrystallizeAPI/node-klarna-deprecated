@@ -3,7 +3,7 @@ const deepAssign = require('deep-assign')
 function crystallizeBasketToKlarnaCart (crystallizeBasket) {
   const items = crystallizeBasket.items.map(i => deepAssign({}, i))
 
-  if ('shipping' in crystallizeBasket) {
+  if ('shipping' in crystallizeBasket && !crystallizeBasket.freeShipping) {
     const shippingItem = {
       type: 'shipping_fee',
       reference: 'SHIPPING',

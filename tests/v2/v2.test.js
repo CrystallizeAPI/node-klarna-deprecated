@@ -52,3 +52,30 @@ test('crystallize basket is normalized correctly', () => {
     ]
   })
 })
+
+test('crystallize basket with free shipping is normalized correctly', () => {
+  const normalized = v2.crystallizeBasketToKlarnaCart({
+    freeShipping: true,
+    shipping: {
+      name: 'Super fast shipping',
+      price: 69,
+      tax_rate: 25
+    },
+    items: [
+      {
+        unit_price: 99.99,
+        tax_rate: 15,
+        discount_rate: 20
+      }
+    ]
+  })
+  expect(normalized).toMatchObject({
+    items: [
+      {
+        unit_price: 9999,
+        tax_rate: 1500,
+        discount_rate: 2000
+      }
+    ]
+  })
+})
