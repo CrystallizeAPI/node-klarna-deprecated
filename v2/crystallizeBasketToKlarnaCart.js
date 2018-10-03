@@ -33,6 +33,11 @@ function crystallizeBasketToKlarnaCart (crystallizeBasket) {
       item.tax_rate *= 100
       item.discount_rate *= 100
 
+      // Handle subscription info
+      if (item.subscriptionName) {
+        item.name = item.subscriptionName
+      }
+
       return item
     })
   }
