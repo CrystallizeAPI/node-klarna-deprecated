@@ -1,3 +1,9 @@
+## 1.4.0 (2018-10-03)
+
+* toKlarnaCart: Use subscription name if available ([985577a](https://github.com/snowballdigital/node-klarna/commit/985577a))
+
+
+
 ## <small>1.3.4 (2018-10-02)</small>
 
 * Respect freeShipping in toKlarnaCart ([dffeb09](https://github.com/snowballdigital/node-klarna/commit/dffeb09))
