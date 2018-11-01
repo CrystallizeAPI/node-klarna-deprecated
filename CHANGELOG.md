@@ -1,3 +1,9 @@
+## 1.5.0 (2018-11-01)
+
+* New git url ([857e371](https://github.com/CrystallizeAPI/node-klarna/commit/857e371))
+
+
+
 ## 1.4.0 (2018-10-03)
 
 * toKlarnaCart: Use subscription name if available ([985577a](https://github.com/snowballdigital/node-klarna/commit/985577a))
