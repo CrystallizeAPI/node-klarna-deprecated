@@ -1,3 +1,9 @@
+## 1.6.0 (2018-12-05)
+
+* Update README.md ([fc7f739](https://github.com/CrystallizeAPI/node-klarna/commit/fc7f739))
+
+
+
 ## 1.5.0 (2018-11-01)
 
 * New git url ([857e371](https://github.com/CrystallizeAPI/node-klarna/commit/857e371))
