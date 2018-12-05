@@ -1,5 +1,5 @@
 # node-klarna
-Node Klarna SDK for easy Klarna integration
+Node Klarna SDK for [easy Klarna integration in Node.JS](https://crystallize.com/developers/react-components/node-klarna). Generic Klarna Node integration with specific support for the [Crystallize headless ecommerce service](https://crystallize.com/developers).
 
 ## Install
 ```
