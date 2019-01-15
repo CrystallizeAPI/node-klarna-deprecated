@@ -1,3 +1,9 @@
+## 1.7.0 (2019-01-15)
+
+* Added recurring order functions ([d37a3ee](https://github.com/CrystallizeAPI/node-klarna/commit/d37a3ee))
+
+
+
 ## 1.6.0 (2018-12-05)
 
 * Update README.md ([fc7f739](https://github.com/CrystallizeAPI/node-klarna/commit/fc7f739))
