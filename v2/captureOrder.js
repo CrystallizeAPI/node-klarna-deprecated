@@ -7,21 +7,39 @@ const getOrder = require('./getOrder')
 
 const config = getConfig()
 
-function captureOrder (orderId) {
+function captureOrder (mixed) {
   return new Promise(async resolve => {
-    const { success, order } = await getOrder(orderId)
+    let reservation
 
-    if (!success) {
+    // Looks like we got an order id. Lets get the order
+    if (typeof mixed === 'string') {
+      const { success, order } = await getOrder(mixed)
+
+      if (!success) {
+        return resolve({
+          success: false,
+          error: 'Could not get Klarna order'
+        })
+      }
+
+      ;({ reservation } = order)
+    } else {
+      ;({ reservation } = mixed)
+    }
+
+    if (!reservation) {
       return resolve({
         success: false,
-        error: 'Could not get Klarna order'
+        error: 'Could not retrieve reservation number'
       })
     }
 
     const digest = crypto
       .createHash('sha512')
       .update(
-        `4:1:xmlrpc:${config.storeName}:2:${config.id}:${order.reservation}:${config.sharedSecret}`,
+        `4:1:xmlrpc:${config.storeName}:2:${config.id}:${reservation}:${
+          config.sharedSecret
+        }`,
         'utf-8'
       )
       .digest('base64')
@@ -63,7 +81,7 @@ function captureOrder (orderId) {
           <param>
             <value>
               <!-- rno -->
-              <string>${order.reservation}</string>
+              <string>${reservation}</string>
             </value>
           </param>
           <param>

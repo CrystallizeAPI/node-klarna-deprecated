@@ -2,7 +2,7 @@ const { doFetch } = require('./helpers')
 
 async function getOrder (orderId) {
   try {
-    const response = await doFetch(`/${orderId}`, {
+    const response = await doFetch(`/orders/${orderId}`, {
       method: 'GET'
     })
 

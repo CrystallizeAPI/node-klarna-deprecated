@@ -16,9 +16,8 @@ const KLARNA_CONTENT_TYPE =
 
 const TEST_DRIVE = !['production', 'prod'].includes(KLARNA_MODE)
 
-const CHECKOUT_URL_LIVE = 'https://checkout.klarna.com/checkout/orders'
-const CHECKOUT_URL_TEST =
-  'https://checkout.testdrive.klarna.com/checkout/orders'
+const CHECKOUT_URL_LIVE = 'https://checkout.klarna.com/checkout'
+const CHECKOUT_URL_TEST = 'https://checkout.testdrive.klarna.com/checkout'
 const PAYMENT_URL_LIVE = 'https://payment.klarna.com'
 const PAYMENT_URL_TEST = 'https://payment.testdrive.klarna.com'
 
@@ -117,89 +116,9 @@ async function doFetch (path, optionsOverride) {
   return fetch(url, options)
 }
 
-function modeSubscriptionDates (item) {
-  const curDate = new Date()
-  const initDate = new Date()
-  const renewDate = new Date()
-
-  const initial_period_unit = item.initial_period_unit
-    .toLowerCase()
-    .replace(/s$/, '')
-
-  if (initial_period_unit === 'day') {
-    initDate.setDate(curDate.getDate() + item.initial_period)
-  } else if (initial_period_unit === 'week') {
-    initDate.setDate(curDate.getDate() + item.initial_period * 7)
-  } else if (initial_period_unit === 'month') {
-    initDate.setMonth(curDate.getMonth() + item.initial_period)
-  } else if (initial_period_unit === 'year') {
-    initDate.setMonth(curDate.getMonth() + item.initial_period * 12)
-  }
-
-  // if we get initial period with values
-  // create subscr. oly for initial values  and set klarna renew
-
-  // then for real duration
-  let curmonth
-  const duration_unit = item.duration_unit.toLowerCase().replace(/s$/, '')
-
-  if (duration_unit === 'day') {
-    renewDate.setDate(curDate.getDate() + item.duration)
-  } else if (duration_unit === 'week') {
-    renewDate.setDate(curDate.getDate() + item.duration * 7)
-  } else if (duration_unit === 'month') {
-    if (curDate.getDate() === 31) {
-      curmonth = curDate.getMonth()
-      if (
-        curmonth === 3 ||
-        curmonth === 5 ||
-        curmonth === 8 ||
-        curmonth === 10
-      ) {
-        renewDate.setDate(30)
-      } else if (curmonth === 1 && curDate.getYear % 4 === 0) {
-        renewDate.setDate(29)
-      } else if (curmonth === 1 && curDate.getYear % 4 !== 0) {
-        renewDate.setDate(28)
-      }
-    } else if (curDate.getDate() === 30) {
-      curmonth = curDate.getMonth()
-      if (
-        curmonth !== 3 &&
-        curmonth !== 5 &&
-        curmonth !== 8 &&
-        curmonth !== 10
-      ) {
-        renewDate.setDate(31)
-      } else if (curmonth === 1 && curDate.getYear % 4 === 0) {
-        renewDate.setDate(29)
-      } else if (curmonth === 1 && curDate.getYear % 4 !== 0) {
-        renewDate.setDate(28)
-      }
-    } else if (curDate.getDate() === 28 && curDate.getMonth() === 1) {
-      renewDate.setDate(31)
-    }
-    renewDate.setMonth(curDate.getMonth() + item.duration)
-  } else if (duration_unit === 'year') {
-    if (
-      curmonth === 1 &&
-      curDate.getYear % 4 === 0 &&
-      curDate.getDate() === 29
-    ) {
-      renewDate.setDate(28)
-    }
-    renewDate.setMonth(curDate.getMonth() + item.duration * 12)
-  }
-  return {
-    initDate,
-    renewDate
-  }
-}
-
 loadconfig()
 
 module.exports = {
   doFetch,
-  getConfig,
-  modeSubscriptionDates
+  getConfig
 }

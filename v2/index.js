@@ -6,6 +6,8 @@ const confirmOrder = require('./confirmOrder')
 const updateOrder = require('./updateOrder')
 const captureOrder = require('./captureOrder')
 const { getConfig } = require('./helpers')
+const createRecurringOrder = require('./createRecurringOrder')
+const getRecurringOrderStatus = require('./getRecurringOrderStatus')
 const crystallizeBasketToKlarnaCart = require('./crystallizeBasketToKlarnaCart')
 
 module.exports = {
@@ -15,5 +17,7 @@ module.exports = {
   updateOrder,
   confirmOrder,
   captureOrder,
+  createRecurringOrder,
+  getRecurringOrderStatus,
   crystallizeBasketToKlarnaCart
 }

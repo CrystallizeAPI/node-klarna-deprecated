@@ -20,7 +20,7 @@ async function createOrder (options) {
     options
   )
 
-  const klarnaOrderResponse = await doFetch('', {
+  const klarnaOrderResponse = await doFetch('/orders', {
     method: 'POST',
     body: order
   })
