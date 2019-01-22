@@ -1,8 +1,6 @@
-const { doFetch } = require('./helpers')
-
-async function updateOrder (orderId, state) {
+async function updateOrder ({ client, orderId, state }) {
   try {
-    const response = await doFetch(`/orders/${orderId}`, {
+    const response = await client.fetch(`/orders/${orderId}`, {
       body: state
     })
 

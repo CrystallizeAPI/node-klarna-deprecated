@@ -1,35 +1,38 @@
 # node-klarna
+
 Node Klarna SDK for [easy Klarna integration in Node.JS](https://crystallize.com/developers/react-components/node-klarna). Generic Klarna Node integration with specific support for the [Crystallize headless ecommerce service](https://crystallize.com/developers).
 
 ## Install
+
 ```
 yarn add @crystallize/node-klarna
 ```
 
-## Setup
-The folling env variables needs to be set
-KLARNA_MODE
-KLARNA_MERCHANT_ID
-KLARNA_SHARED_SECRET
-KLARNA_TERMS_URI
-KLARNA_STORE_NAME
-
 ## Usage V2
+
 https://developers.klarna.com/en/gb/kco-v2
 
 ```
-const Klarna = require('@crystallize/node-klarna/v2');
+const KlarnaV2 = require('@crystallize/node-klarna/v2');
+
+const client = new KlarnaV2({
+  testDrive: true,
+  merchantId: 200, // Obtain from Klarna merchant site
+  sharedSecret: "test", // Obtain from Klarna merchant site
+  termsUri: 'https://example.com/terms',
+  storeName: 'My store name'
+});
 
 // Create order
-const { success, order } = Klarna.createOrder(klarnaCheckoutModel);
+const { success, order } = client.createOrder(klarnaCheckoutModel);
 
 // Confirm order
-const { success } = Klarna.confirmOrder(order.id);
+const { success } = client.confirmOrder(order.id);
 
 // Capture order
-const { success } = Klarna.captureOrder(order.id);
+const { success } = client.captureOrder(order.id);
 
 // Transform a Crystallize basket model (from @crystallize/react-basket) to a Klarna model
-const klarnaCart = Klarna.crystallizeBasketToKlarnaCart(crystallizeBasket.state);
+const klarnaCart = client.crystallizeBasketToKlarnaCart(crystallizeBasket.state);
 
 ```

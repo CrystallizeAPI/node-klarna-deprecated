@@ -2,18 +2,27 @@ require('dotenv').config()
 
 const express = require('express')
 
-const v2 = require('../../v2')
+const V2 = require('../../v2')
 const { cart, merchant } = require('../../tests/v2/mockData')
 
 const server = express()
 const router = express.Router()
 
+const client = new V2({
+  testDrive: !['prod', 'production'].includes(process.env.KLARNA_MODE),
+  merchantId: process.env.KLARNA_MERCHANT_ID,
+  sharedSecret: process.env.KLARNA_SHARED_SECRET,
+  termsUri: process.env.KLARNA_TERMS_URI,
+  storeName: process.env.KLARNA_STORE_NAME
+})
+
 router.get('/', async (req, res) => {
-  const { success, order } = await v2.createOrder({
+  const { success, order } = await client.createOrder({
     cart,
     merchant: {
       ...merchant,
-      confirmation_uri: 'http://localhost:1234/confirmation?id={checkout.order.id}'
+      confirmation_uri:
+        'http://localhost:1234/confirmation?id={checkout.order.id}'
     }
   })
 
@@ -30,8 +39,8 @@ router.get('/', async (req, res) => {
 
 router.get('/confirmation', async (req, res) => {
   const { id } = req.query
-  const { success, error } = await v2.confirmOrder(id)
-  const { order } = await v2.getOrder(id)
+  const { success, error } = await client.confirmOrder(id)
+  const { order } = await client.getOrder(id)
 
   res.send(
     `
@@ -48,12 +57,14 @@ router.get('/confirmation', async (req, res) => {
 
 router.get('/confirm', async (req, res) => {
   const { id } = req.query
-  const { success, error } = await v2.confirmOrder(id)
+  const { success, error } = await client.confirmOrder(id)
   res.send(
     `
     <html>
       <body>
-      <h1>Confirm status: ${error ? JSON.stringify(error) : success}</h1>
+      <h1>Confirm status: ${
+  error ? JSON.stringify(error) : success.toString()
+}</h1>
       </body>
     </html>
   `
@@ -62,12 +73,16 @@ router.get('/confirm', async (req, res) => {
 
 router.get('/capture', async (req, res) => {
   const { id } = req.query
-  const { success, error, OCRCode } = await v2.captureOrder(id)
+  const { success, error, OCRCode } = await client.captureOrder(id)
   res.send(
     `
     <html>
       <body>
-      <h1>Capture status: ${error ? JSON.stringify(error) : `${success}. OCR code: ${OCRCode}`}</h1>
+      <h1>Capture status: ${
+  error
+    ? JSON.stringify(error)
+    : `${success.toString()}. OCR code: ${OCRCode}`
+}</h1>
       </body>
     </html>
   `

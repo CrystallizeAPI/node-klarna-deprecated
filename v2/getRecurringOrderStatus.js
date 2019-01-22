@@ -1,7 +1,5 @@
-const { doFetch } = require('./helpers')
-
-async function getRecurringOrderStatus (id) {
-  const klarnaOrderResponse = await doFetch(`/recurring/${id}`, {
+async function getRecurringOrderStatus ({ client, id }) {
+  const klarnaOrderResponse = await client.fetch(`/recurring/${id}`, {
     method: 'get',
     headers: {
       Accept: null,

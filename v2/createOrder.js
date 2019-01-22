@@ -1,11 +1,6 @@
 const deepAssign = require('deep-assign')
 
-const { getConfig, doFetch } = require('./helpers')
-const getOrder = require('./getOrder')
-
-async function createOrder (options) {
-  const config = getConfig()
-
+async function createOrder ({ client, options }) {
   // Construct a valid Klarna order model
   const order = deepAssign(
     {
@@ -13,14 +8,14 @@ async function createOrder (options) {
       purchase_currency: 'NOK',
       locale: 'nb-no',
       merchant: {
-        id: config.id
+        id: client.config.merchantId
       },
       cart: {}
     },
     options
   )
 
-  const klarnaOrderResponse = await doFetch('/orders', {
+  const klarnaOrderResponse = await client.fetch('/orders', {
     method: 'POST',
     body: order
   })
@@ -30,7 +25,7 @@ async function createOrder (options) {
     const orderIdMatch = location.match(/\/([a-z0-9]+)$/i)
 
     if (orderIdMatch) {
-      return getOrder(orderIdMatch[1])
+      return client.getOrder(orderIdMatch[1])
     }
   }
 

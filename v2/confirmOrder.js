@@ -1,7 +1,5 @@
-const updateOrder = require('./updateOrder')
-
-async function confirmOrder (orderId) {
-  return updateOrder(orderId, { status: 'created' })
+function confirmOrder ({ client, orderId }) {
+  return client.updateOrder(orderId, { status: 'created' })
 }
 
 module.exports = confirmOrder

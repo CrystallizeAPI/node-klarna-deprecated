@@ -1,10 +1,6 @@
 const deepAssign = require('deep-assign')
 
-const { getConfig, doFetch } = require('./helpers')
-
-async function createRecurringOrder (options, { recurring_token }) {
-  const config = getConfig()
-
+async function createRecurringOrder ({ client, options, recurring_token }) {
   // Construct a valid Klarna order model
   const order = deepAssign(
     {
@@ -12,14 +8,14 @@ async function createRecurringOrder (options, { recurring_token }) {
       purchase_currency: 'NOK',
       locale: 'nb-no',
       merchant: {
-        id: (config.id || '').toString()
+        id: (client.config.merchantId || '').toString()
       },
       cart: {}
     },
     options
   )
 
-  const klarnaOrderResponse = await doFetch(
+  const klarnaOrderResponse = await client.fetch(
     `/recurring/${recurring_token}/orders`,
     {
       method: 'POST',

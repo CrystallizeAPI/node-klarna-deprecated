@@ -1,19 +1,14 @@
 const crypto = require('crypto')
+const crossFetch = require('cross-fetch')
 const { parseString } = require('xml2js')
-const fetch = require('cross-fetch')
 
-const { getConfig } = require('./helpers')
-const getOrder = require('./getOrder')
-
-const config = getConfig()
-
-function captureOrder (mixed) {
+function captureOrder ({ client, mixed }) {
   return new Promise(async resolve => {
     let reservation
 
     // Looks like we got an order id. Lets get the order
     if (typeof mixed === 'string') {
-      const { success, order } = await getOrder(mixed)
+      const { success, order } = await client.getOrder(mixed)
 
       if (!success) {
         return resolve({
@@ -37,14 +32,14 @@ function captureOrder (mixed) {
     const digest = crypto
       .createHash('sha512')
       .update(
-        `4:1:xmlrpc:${config.storeName}:2:${config.id}:${reservation}:${
-          config.sharedSecret
-        }`,
+        `4:1:xmlrpc:${client.config.storeName}:2:${
+          client.config.merchantId
+        }:${reservation}:${client.config.sharedSecret}`,
         'utf-8'
       )
       .digest('base64')
 
-    const response = await fetch(config.paymentUrl, {
+    const response = await crossFetch(client.config.paymentUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'text/xml',
@@ -63,13 +58,13 @@ function captureOrder (mixed) {
           <param>
             <value>
               <!-- client_vsn -->
-              <string>xmlrpc:${config.storeName}:2</string>
+              <string>xmlrpc:${client.config.storeName}:2</string>
             </value>
           </param>
           <param>
             <value>
               <!-- merchant id (eid) -->
-              <int>${config.id}</int>
+              <int>${client.config.merchantId}</int>
             </value>
           </param>
           <param>
@@ -92,6 +87,13 @@ function captureOrder (mixed) {
         </params>
       </methodCall>`
     })
+
+    if (response.status === 406) {
+      return resolve({
+        success: false,
+        error: 'Not acceptable'
+      })
+    }
 
     const body = await response.text()
 

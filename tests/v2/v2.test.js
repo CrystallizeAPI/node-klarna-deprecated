@@ -1,9 +1,19 @@
+require('dotenv').config()
+
 const { cart, merchant } = require('./mockData')
 
-const v2 = require('../../v2')
+const V2 = require('../../v2')
+
+const client = new V2({
+  testDrive: !['prod', 'production'].includes(process.env.KLARNA_MODE),
+  merchantId: process.env.KLARNA_MERCHANT_ID,
+  sharedSecret: process.env.KLARNA_SHARED_SECRET,
+  termsUri: process.env.KLARNA_TERMS_URI,
+  storeName: process.env.KLARNA_STORE_NAME
+})
 
 test('an order is created', async () => {
-  const createOrderResult = await v2.createOrder({ cart, merchant })
+  const createOrderResult = await client.createOrder({ cart, merchant })
   expect(createOrderResult.success).toBe(true)
   expect(createOrderResult.order).toHaveProperty('id')
 })
@@ -11,16 +21,16 @@ test('an order is created', async () => {
 test('an order is created and confirmed', async () => {
   expect.assertions(3)
 
-  const createOrderResult = await v2.createOrder({ cart, merchant })
+  const createOrderResult = await client.createOrder({ cart, merchant })
   expect(createOrderResult.success).toBe(true)
   expect(createOrderResult.order).toHaveProperty('id')
 
-  const confirmResult = await v2.confirmOrder(createOrderResult.order.id)
+  const confirmResult = await client.confirmOrder(createOrderResult.order.id)
   expect(confirmResult.success).toBe(true)
 })
 
 test('crystallize basket is normalized correctly', () => {
-  const normalized = v2.crystallizeBasketToKlarnaCart({
+  const normalized = client.crystallizeBasketToKlarnaCart({
     shipping: {
       name: 'Super fast shipping',
       price: 69,
@@ -54,7 +64,7 @@ test('crystallize basket is normalized correctly', () => {
 })
 
 test('crystallize basket with free shipping is normalized correctly', () => {
-  const normalized = v2.crystallizeBasketToKlarnaCart({
+  const normalized = client.crystallizeBasketToKlarnaCart({
     freeShipping: true,
     shipping: {
       name: 'Super fast shipping',
