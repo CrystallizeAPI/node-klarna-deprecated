@@ -1,3 +1,9 @@
+## 2.0.0 (2019-01-22)
+
+* Client class instead of single functions ([2ff5e4b](https://github.com/CrystallizeAPI/node-klarna/commit/2ff5e4b))
+
+
+
 ## 1.7.0 (2019-01-15)
 
 * Added recurring order functions ([d37a3ee](https://github.com/CrystallizeAPI/node-klarna/commit/d37a3ee))
