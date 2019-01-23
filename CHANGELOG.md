@@ -1,3 +1,9 @@
+## 2.1.0 (2019-01-23)
+
+* Added testMerchant option ([cbdff59](https://github.com/CrystallizeAPI/node-klarna/commit/cbdff59))
+
+
+
 ## 2.0.0 (2019-01-22)
 
 * Client class instead of single functions ([2ff5e4b](https://github.com/CrystallizeAPI/node-klarna/commit/2ff5e4b))
