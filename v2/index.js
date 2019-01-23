@@ -39,7 +39,7 @@ module.exports = class KlarnaV2Client {
         storeName: 'demo'
       })
     } else {
-      ow(config.merchantId, ow.string)
+      ow(config.merchantId, ow.any(ow.string, ow.number))
       ow(config.sharedSecret, ow.string)
       ow(config.storeName, ow.string)
     }
