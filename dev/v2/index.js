@@ -9,11 +9,8 @@ const server = express()
 const router = express.Router()
 
 const client = new V2({
-  testDrive: !['prod', 'production'].includes(process.env.KLARNA_MODE),
-  merchantId: process.env.KLARNA_MERCHANT_ID,
-  sharedSecret: process.env.KLARNA_SHARED_SECRET,
-  termsUri: process.env.KLARNA_TERMS_URI,
-  storeName: process.env.KLARNA_STORE_NAME
+  testDrive: true,
+  useTestMerchant: true
 })
 
 router.get('/', async (req, res) => {

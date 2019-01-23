@@ -28,13 +28,23 @@ module.exports = class KlarnaV2Client {
   }
 
   setConfig (config) {
-    ow(config.testDrive, ow.boolean)
-    ow(config.merchantId, ow.string)
-    ow(config.sharedSecret, ow.string)
-    ow(config.termsUri, ow.string)
-    ow(config.storeName, ow.string)
+    this.config = {}
 
-    this.config = config
+    ow(config.testDrive, ow.boolean)
+
+    if (config.useTestMerchant) {
+      Object.assign(this.config, {
+        merchantId: 200,
+        sharedSecret: 'test',
+        storeName: 'demo'
+      })
+    } else {
+      ow(config.merchantId, ow.string)
+      ow(config.sharedSecret, ow.string)
+      ow(config.storeName, ow.string)
+    }
+
+    Object.assign(this.config, config)
 
     this.config.checkoutUrl = config.testDrive
       ? this.CHECKOUT_URL_TEST

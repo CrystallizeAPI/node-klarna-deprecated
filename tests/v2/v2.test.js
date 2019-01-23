@@ -5,11 +5,8 @@ const { cart, merchant } = require('./mockData')
 const V2 = require('../../v2')
 
 const client = new V2({
-  testDrive: !['prod', 'production'].includes(process.env.KLARNA_MODE),
-  merchantId: process.env.KLARNA_MERCHANT_ID,
-  sharedSecret: process.env.KLARNA_SHARED_SECRET,
-  termsUri: process.env.KLARNA_TERMS_URI,
-  storeName: process.env.KLARNA_STORE_NAME
+  testDrive: true,
+  useTestMerchant: true
 })
 
 test('an order is created', async () => {
