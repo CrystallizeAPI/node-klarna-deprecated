@@ -1,3 +1,9 @@
+## <small>2.1.1 (2019-01-23)</small>
+
+* Allow number as merchantId ([0c2a77a](https://github.com/CrystallizeAPI/node-klarna/commit/0c2a77a))
+
+
+
 ## 2.1.0 (2019-01-23)
 
 * Added testMerchant option ([cbdff59](https://github.com/CrystallizeAPI/node-klarna/commit/cbdff59))
