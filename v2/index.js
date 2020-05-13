@@ -76,9 +76,7 @@ module.exports = class KlarnaV2Client {
 
     if (options.body) {
       if (typeof options.body !== 'string') {
-        let { body } = options
-
-        options.body = JSON.stringify(body)
+        options.body = JSON.stringify(options.body)
       }
     }
 
