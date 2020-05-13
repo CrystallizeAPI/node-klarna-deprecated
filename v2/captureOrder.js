@@ -3,6 +3,7 @@ const crossFetch = require('cross-fetch')
 const { parseString } = require('xml2js')
 
 function captureOrder ({ client, mixed }) {
+  // eslint-disable-next-line no-async-promise-executor
   return new Promise(async resolve => {
     let reservation
 
@@ -32,9 +33,7 @@ function captureOrder ({ client, mixed }) {
     const digest = crypto
       .createHash('sha512')
       .update(
-        `4:1:xmlrpc:${client.config.storeName}:2:${
-          client.config.merchantId
-        }:${reservation}:${client.config.sharedSecret}`,
+        `4:1:xmlrpc:${client.config.storeName}:2:${client.config.merchantId}:${reservation}:${client.config.sharedSecret}`,
         'utf-8'
       )
       .digest('base64')

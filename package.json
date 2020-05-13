@@ -9,7 +9,9 @@
     "validate": "yarn lint && yarn test",
     "prepare": "yarn validate",
     "prepush": "yarn lint",
-    "dev:v2": "nodemon ./dev/v2"
+    "dev:v2": "nodemon ./dev/v2",
+    "dev:v3": "nodemon ./dev/v3",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -23,23 +25,24 @@
   },
   "homepage": "https://github.com/CrystallizeAPI/node-klarna#readme",
   "dependencies": {
-    "cross-fetch": "^2.2.2",
-    "deep-assign": "^2.0.0",
-    "dotenv": "^6.0.0",
-    "ow": "^0.10.0",
+    "cross-fetch": "^3.0.4",
+    "deep-assign": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "ow": "^0.17.0",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "eslint": "^5.6.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "express": "^4.16.3",
-    "husky": "^0.14.3",
-    "jest": "^23.6.0",
-    "nodemon": "^1.18.9",
-    "prettier-standard": "^8.0.1"
+    "eslint": "^7.0.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "express": "^4.17.1",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.3",
+    "prettier-standard": "^16.3.0",
+    "release-it": "^13.5.8"
   }
 }
