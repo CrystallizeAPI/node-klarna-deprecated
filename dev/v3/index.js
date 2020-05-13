@@ -10,8 +10,8 @@ const router = express.Router()
 
 const client = new V3({
   testDrive: true,
-  username: 'PK09050_9d24214fd5f2',
-  password: 'WJhGB7dkghVaQExH'
+  username: process.env.V3_USERNAME,
+  password: process.env.V3_PASSWORD
 })
 
 router.get('/', async (req, res) => {
