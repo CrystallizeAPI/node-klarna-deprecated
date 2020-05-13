@@ -41,8 +41,11 @@
     "express": "^4.17.1",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "kind-of": "^6.0.3",
+    "minimist": "^1.2.5",
     "nodemon": "^2.0.3",
     "prettier-standard": "^16.3.0",
-    "release-it": "^13.5.8"
+    "release-it": "^13.5.8",
+    "set-value": "^3.0.2"
   }
 }
