@@ -64,7 +64,7 @@ module.exports = class KlarnaV3Client {
     return acknowledgeOrder({ client: this, orderId })
   }
 
-  captureOrder ({ ...args }) {
-    return captureOrder({ client: this, ...args })
+  captureOrder (orderId, amount) {
+    return captureOrder({ client: this, orderId, amount })
   }
 }
