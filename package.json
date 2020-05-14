@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint ./v2",
+    "lint": "eslint ./v2 ./v3",
     "validate": "yarn lint && yarn test",
     "prepare": "yarn validate",
     "prepush": "yarn lint",
