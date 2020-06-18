@@ -26,7 +26,7 @@ async function captureOrder ({ client, orderId, amount }) {
       return { success: true }
     }
 
-    return { success: false }
+    return { success: false, error: await response.json() }
   } catch (error) {
     return { success: false, error }
   }
