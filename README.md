@@ -36,6 +36,18 @@ const { success } = await client.acknowledgeOrder(order.id);
 // Capture order
 const { success } = await client.captureOrder({ orderId: order.id });
 
+// Cancel order
+const { success } = await client.cancelOrder({ orderId: order.id });
+
+// Refund order
+const { success } = await client.refundOrder({ orderId: order.id, amount, description, reference, order_lines });
+
+// Release order authorization
+const { success } = await client.releaseAuthorization({ orderId: order.id });
+
+// Update order
+const { success } = await client.updateOrder({ orderId: order.id, body: klarnaCheckoutModel });
+
 ```
 
 ## Usage V2
