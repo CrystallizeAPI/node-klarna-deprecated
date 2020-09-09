@@ -10,6 +10,7 @@ const cancelOrder = require('./cancelOrder')
 const refundOrder = require('./refundOrder')
 const updateOrder = require('./updateOrder')
 const releaseAuthorization = require('./releaseRemainingAuthorization')
+const updateMerchantReference = require('./updateMerchantReference')
 
 const URL_LIVE = 'https://api.klarna.com'
 const URL_TEST = 'https://api.playground.klarna.com'
@@ -93,5 +94,14 @@ module.exports = class KlarnaV3Client {
 
   updateOrder (orderId, body) {
     return updateOrder({ client: this, orderId, body })
+  }
+
+  updateMerchantReference (orderId, merchant_reference1, merchant_reference2) {
+    return updateMerchantReference({
+      client: this,
+      orderId,
+      merchant_reference1,
+      merchant_reference2
+    })
   }
 }

@@ -34,19 +34,22 @@ const { success } = await client.confirmOrder(order.id);
 const { success } = await client.acknowledgeOrder(order.id);
 
 // Capture order
-const { success } = await client.captureOrder({ orderId: order.id });
-
-// Cancel order
-const { success } = await client.cancelOrder({ orderId: order.id });
-
-// Refund order
-const { success } = await client.refundOrder({ orderId: order.id, amount, description, reference, order_lines });
-
-// Release order authorization
-const { success } = await client.releaseAuthorization({ orderId: order.id });
+const { success } = await client.captureOrder(order.id);
 
 // Update order
-const { success } = await client.updateOrder({ orderId: order.id, body: klarnaCheckoutModel });
+const { success } = await client.updateOrder(order.id, klarnaCheckoutModel);
+
+// Cancel order
+const { success } = await client.cancelOrder(order.id);
+
+// Refund order
+const { success } = await client.refundOrder(order.id, amount, description, reference, order_lines);
+
+// Release order authorization
+const { success } = await client.releaseAuthorization(order.id);
+
+// Update merchant references
+const { success } = await client.updateMerchantReference(order.id, merchant_reference1, merchant_reference2);
 
 ```
 
