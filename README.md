@@ -27,9 +27,6 @@ const client = new KlarnaV3({
 // Create order
 const { success, order } = await client.createOrder(klarnaCheckoutModel);
 
-// Confirm order
-const { success } = await client.confirmOrder(order.id);
-
 // Acknowledge order
 const { success } = await client.acknowledgeOrder(order.id);
 
